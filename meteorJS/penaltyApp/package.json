@@ -1,0 +1,17 @@
+{
+  "name": "penalidade_des",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "dateformat": "^1.0.12",
+    "meteor-node-stubs": "~0.2.0",
+    "moment": "^2.14.1",
+    "numeral": "^1.5.3",
+    "react-progressbar.js": "^0.2.0",
+    "tableexport": "^3.2.7",
+    "xlsx": "^0.8.0"
+  }
+}

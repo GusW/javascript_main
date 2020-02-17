@@ -1,0 +1,44 @@
+<template name="P1">
+    <div class="row template_title_row">
+        <div class="col-xs-4" style="text-align:left;">
+            <h3 class="template_title">{{object.title}}</h3>
+        </div>
+        <div class="col-xs-8 title_btns" style="text-align:right;">
+            <button id="btnElaborate" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Elaborate {{object.name}}">Elaborate</button>
+            <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Clear Form">Clear</button>
+            <button id="btnExport" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Export {{object.name}} List (CSV)">Export</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel panel-default panel_form">
+        <div class="panel-body">
+            <form id="form">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.carrier}}" class="label_form">{{object.carrier}}</label>
+                    <select id="{{object.inputCarrier}}" class="form-control input-sm">
+                        <option value="">Select...</option>
+                        {{#each carriers}}
+                            <option value="{{carrier}}">{{carrier}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.date}}" class="label_form">{{object.date}}</label>
+                    <div class="input-group datetimepicker">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input name="calendar" placeholder="MM/YYYY" id="{{object.inputDate}}" class="set-due-date form-control input-sm" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-6">
+                    <label for="{{object.branch}}" class="label_form">{{object.branch}}</label>
+                    {{> inputAutocomplete settings=settings id="inputBranch" class="form-control input-sm"}}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel dtPanel">
+        <table id="dataTable">
+            {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptions }}
+        </table>
+    </div>
+</template>

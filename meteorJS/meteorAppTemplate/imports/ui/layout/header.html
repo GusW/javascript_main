@@ -1,0 +1,19 @@
+<template name="header">
+    <div class="container-fluid sessionContainer">
+        <div class="page-header">
+            <div class="row header">
+                <div class="col-xs-10 col-md-6">
+                    <img class="logo" data-page="{{system.href}}" src="{{system.logo}}" alt="{{system.alt}}" style="max-width:{{system.width}};margin-left:{{system.marginLeft}};margin-top:{{system.marginTop}}" />
+                    <h3 class="system_title">{{system.name}}</h3>
+                    <h5 class="system_description">{{system.description}}</h5>
+                </div>
+                {{#if currentUser}}
+                    {{> info}}
+                {{/if}}
+            </div>
+        </div>
+        {{#if currentUser}}
+            {{> navbar}}
+        {{/if}}
+    </div>
+</template>

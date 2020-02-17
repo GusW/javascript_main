@@ -1,0 +1,30 @@
+<template name="info">
+    <div class="session col-xs-2 col-md-6">
+        <div class="well well-lg">
+            <div class="row sessionRow">
+                <div class="col-xs-1 col-sm-7 col-md-7 sessionInfo">
+                    <p>
+                        <h5 class="session_id">Hi, {{system.username}}.</h5>
+                        <small id="session_time" class="session_time">{{system.now}}</small>
+                    </p>
+                </div>
+                <div class="col-xs-1 col-sm-1 sessionMiddle">
+                </div>
+                <div class="col-xs-10 col-sm-4 col-md-4 sessionBtn">
+                    <div class="col-xs-1 col-sm-3 col-md-4">
+                    </div>
+                    <div class="col-xs-5 col-sm-4 col-md-4 btnSessionInfo">
+                      <p>
+                          <button type="button" id="btnSessionInfo" class="btn btn-default btn-sm session_btn" data-toggle="tooltip" title="{{info_description}}">Info</button>
+                      </p>
+                    </div>
+                    <div class="col-xs-5 col-sm-4 col-md-4 btnSessionLogout">
+                      <p>
+                          <button type="button" id="btnSessionLogout" class="btn btn-default btn-sm session_btn" data-toggle="tooltip" title="{{sair_description}}">Logout</button>
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,44 @@
+<template name="Login">
+    <div class="row">
+        <div class="col-sm-2 col-md-4">
+          <!-- {{> loginButtons}} -->
+        </div>
+        <div class="template_title_row divTitleLogin col-xs-12 col-sm-8 col-md-4" style="text-align:left; margin-bottom:0em;">
+            <h3 class="login_title">{{object.title}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-md-4">
+        </div>
+        <div class="template_title_row col-xs-12 col-sm-8 col-md-4" style="text-align:left;">
+                {{> alert}}
+        </div>
+    </div>
+    <div class ="row rowLogin">
+        <div class="col-sm-2 col-md-4">
+        </div>
+        <div class="form-group form-login col-xs-12 col-sm-8 col-md-4">
+            <div class="panel panel-default panel_form">
+                <div class="panel-body">
+                    <form id="form">
+                      <div class="form-group">
+                          <label for="{{object.username}}">{{object.username}}<span class="required">*</span></label>
+                          <input type="text" class="form-control input-sm" id="{{object.inputUsername}}" required/>
+                      </div>
+                      <div class="form-group">
+                          <label for="{{object.password}}">{{object.password}}<span class="required">*</span></label>
+                          <input type="password" class="form-control input-sm" id="{{object.inputPassword}}" required/>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+      <div class="col-sm-2 col-md-4">
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-4 login" style="text-align:right;">
+          <button id="btnLogin" type="submit" form="form" class="btn btn-default" data-toggle="tooltip" title="{{object.title}}">{{object.title}} <span class="glyphicon glyphicon-log-in"></span></button>
+      </div>
+    </div>
+</template>

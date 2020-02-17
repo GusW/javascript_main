@@ -1,0 +1,173 @@
+<template name="Invoice">
+    <div class="row template_title_row">
+        <div class="col-xs-4" style="text-align:left;">
+            <h3 class="template_title">{{object.title}}</h3>
+        </div>
+        <div class="col-xs-8 title_btns" style="text-align:right;">
+          {{#if hasAccessProfile}}
+            <button id="btnNew" type="button" class="btn btn-default btn-sm" data-page="{{object.new}}" data-toggle="tooltip" title="Create new {{object.name}}">Create</button>
+          {{/if}}
+            <button id="btnFind" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Find {{object.name}}">Find</button>
+            <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Clear Form">Clear</button>
+            <button id="btnExport" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Export {{object.name}} List (CSV)">Export</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel panel-default panel_form">
+        <div class="panel-body">
+            <form id="form">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.carrier}}" class="label_form">{{object.carrier}}</label>
+                    <select id="{{object.inputCarrier}}" class="form-control input-sm">
+                        <option value="">Select...</option>
+                        {{#each carriers}}
+                            <option value="{{carrier}}">{{carrier}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.dueDate}}" class="label_form">{{object.dueDate}}</label>
+                    <div class="input-group datetimepicker">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input name="calendar" placeholder="MM/YYYY" id="{{object.inputDate}}" class="set-due-date form-control input-sm" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.value}}" class="label_form">{{object.value}}</label>
+                    <input type="text" class="form-control input-sm" id="{{object.inputValue}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.phone}}" class="label_form">{{object.phone}}</label>
+                    <input type="text" class="form-control input-sm" placeholder="(99) 9999-9999" id="{{object.inputPhone}}" />
+                </div>
+                <div class="form-group inputCGCUnidade col-xs-12 col-md-6" style="margin-right: 0.1em;">
+                    <label for="{{object.branch}}" class="label_form">{{object.branch}}</label>
+                    {{> inputAutocomplete settings=settings id="inputBranch" class="form-control input-sm"}}
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.status}}" class="label_form">{{object.status}}</label>
+                    <select id="{{object.inputStatus}}" class="form-control input-sm">
+                        <option value="">Select...</option>
+                        {{#each statuses}}
+                            <option value="{{status}}">{{status}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel dtPanel">
+        <table id="dataTable">
+            {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptions }}
+        </table>
+    </div>
+</template>
+
+<template name="InvoiceNew">
+    <div class="row template_title_row">
+        <div class="col-xs-4" style="text-align:left;">
+            <h3 class="template_title">{{object.titleNew}}</h3>
+        </div>
+        <div class="col-xs-8 title_btns" style="text-align:right;">
+            <button id="btnSave" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Save new {{object.name}}">Save</button>
+            <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Clear form">Clear</button>
+            <button id="btnCancel" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Cancel new {{object.name}}">Cancel</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel panel-default panel_form">
+        <div class="panel-body">
+            <form id="form">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.carrier}}" class="label_form">{{object.carrier}}<span class="required">*</span></label>
+                    <select id="{{object.inputCarrier}}" class="form-control input-sm" required>
+                        <option value="">Select...</option>
+                        {{#each carriers}}
+                            <option value="{{carrier}}">{{carrier}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.dueDate}}" class="label_form">{{object.dueDate}}<span class="required">*</span></label>
+                    <div class="input-group datetimepicker">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input name="calendario" placeholder="MM/YYYY" id="{{object.inputDate}}" class="set-due-date form-control input-sm" type="text" required/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.value}}" class="label_form">{{object.value}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" id="{{object.inputValue}}" required/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.phone}}" class="label_form">{{object.phone}}</label>
+                    <input type="text" class="form-control input-sm" placeholder="(99) 9999-9999" id="{{object.inputPhone}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-md-6" style="margin-right: 0.1em;">
+                    <label for="{{object.branch}}" class="label_form">{{object.branch}}<span class="required">*</span></label>
+                    {{> inputAutocomplete settings=settings id="inputBranch" class="form-control input-sm" required=true}}
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.status}}" class="label_form">{{object.status}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" id="{{object.inputStatus}}" value="ACTIVE" required disabled/>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="InvoiceEdit">
+    <div class="row template_title_row">
+        <div class="col-xs-4" style="text-align:left;">
+            <h3 class="template_title">{{object.titleEdit}}</h3>
+        </div>
+        <div class="col-xs-8 title_btns" style="text-align:right;">
+            <button id="btnSave" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Update {{object.name}}">Save</button>
+            <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Clear form">Clear</button>
+            <button id="btnCancel" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Cancel {{object.name}} Update">Cancel</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel panel-default panel_form">
+        <div class="panel-body">
+            <form id="form">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.carrier}}" class="label_form">{{object.carrier}}<span class="required">*</span></label>
+                    <select id="{{object.inputCarrier}}" class="form-control input-sm" required>
+                        <option>Select...</option>
+                        {{#each carriers}}
+                            <option value="{{carrier}}">{{carrier}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.dueDate}}" class="label_form">{{object.dueDate}}<span class="required">*</span></label>
+                    <div class="input-group datetimepicker">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        <input name="calendario" id="{{object.inputDate}}" class="set-due-date form-control input-sm" type="text" value="{{activeObject.date}}" required/>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.value}}" class="label_form">{{object.value}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" id="{{object.inputValue}}" value="{{activeObject.value}}" required/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.phone}}" class="label_form">{{object.phone}}</label>
+                    <input type="text" class="form-control input-sm" placeholder="(99) 9999-9999" id="{{object.inputPhone}}" value="{{activeObject.phone}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-md-6" style="margin-right: 0.1em;">
+                    <label for="{{object.branch}}" class="label_form">{{object.branch}}<span class="required">*</span></label>
+                    {{> inputAutocomplete settings=settings id=object.inputBranch class="form-control input-sm" value=activeObject.branch required=true}}
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.status}}" class="label_form">{{object.status}}</label>
+                    <select id="{{object.inputStatus}}" class="form-control input-sm" required>
+                        <option value="">Select...</option>
+                        {{#each statuses}}
+                            <option value="{{status}}">{{status}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,37 @@
+<template name="Purchase">
+  <div class="row template_title_row">
+      <div class="col-xs-8" style="text-align:left;">
+          <h3 class="template_title">{{object.title}}</h3>
+      </div>
+      <div class="col-xs-4 title_btns" style="text-align:right;">
+          <button id="btnFind" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Buscar {{object.name}}">Buscar</button>
+          <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Limpar Formulário">Limpar</button>
+      </div>
+  </div>
+  {{> progress}}
+  <div class="panel panel-default panel_form">
+      <div class="panel-body">
+          <form id="form">
+              <div class="form-group col-xs-6 col-sm-3">
+                  <label for="{{object.openingDate}}" class="label_form">{{object.openingDate}}</label>
+                  <div class="input-group datetimepicker dateOn">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      <input name="calendar" placeholder="DD/MM/YYYY" id="{{object.inputOpeningDate}}" class="set-due-date form-control input-sm" value="{{lastBegin}}" type="text" required/>
+                  </div>
+              </div>
+              <div class="form-group col-xs-6 col-sm-3">
+                  <label for="{{object.closingDate}}" class="label_form">{{object.closingDate}}</label>
+                  <div class="input-group datetimepicker dateOff" id="{{object.closingDate}}">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      <input name="calendar" placeholder="DD/MM/YYYY" id="{{object.inputClosingDate}}" class="set-due-date form-control input-sm" type="text" value="{{lastEnd}}" required/>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+  <div class="panel dtPanel">
+      <table id="dataTable">
+          {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptions }}
+      </table>
+  </div>
+</template>

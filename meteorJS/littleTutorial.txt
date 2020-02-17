@@ -1,0 +1,13 @@
+$ meteor create <app>
+$ cd <app>
+$ meteor npm install
+$ meteor
+
+/imports/ui
+/imports/api
+/imports/startup
+
+$ meteor add reactive-dict
+$ meteor add accounts-ui accounts-password
+$ meteor remove insecure
+$ meteor remove autopublish

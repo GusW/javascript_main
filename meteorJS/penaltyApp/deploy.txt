@@ -1,0 +1,39 @@
+<server - Debian8.6>
+aptitude install mongodb-server
+aptitude install curl
+curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+apt-get install nodejs
+apt-get install build-essential
+apt-get install g++
+apt-get install -y apt-transport-https ca-certificates
+sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger jessie main > /etc/apt/sources.list.d/passenger.list'
+apt-get update
+apt-get install -y libapache2-mod-passenger
+a2enmod passenger
+apache2ctl restart
+/usr/bin/passenger-config validate-install
+/usr/sbin/passenger-memory-stats
+
+<deployment>
+$ sudo adduser penalidades
+$ sudo mkdir -p ~penalidades/.ssh
+$ touch $HOME/.ssh/authorized_keys
+$ sudo sh -c "cat $HOME/.ssh/authorized_keys >> ~penalidades/.ssh/authorized_keys"
+$ sudo chown -R penalidades: ~penalidades/.ssh
+$ sudo chmod 700 ~penalidades/.ssh
+$ sudo sh -c "chmod 600 ~penalidades/.ssh/*"
+
+npm set registry https://registry.npmjs.org/
+
+scp ...
+tar ...
+mv ...
+chown ...
+
+$ ../programs/server/npm install --production
+$ ../programs/server/npm prune --production
+service apache2 restart
+passenger-config restart-app /var/www/penalidades/bundle
+
+$ /var/log/apache2/error_log
+$ mongod penalidadesdb

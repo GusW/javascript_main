@@ -1,0 +1,259 @@
+<template name="Quotation">
+  <div class="row template_title_row">
+      <div class="col-xs-8" style="text-align:left;">
+          <h3 class="template_title">{{object.title}}</h3>
+      </div>
+      <div class="col-xs-4 title_btns" style="text-align:right;">
+          <button id="btnFind" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Buscar {{object.name}}">Buscar</button>
+          <button id="btnClear" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Limpar Formulário">Limpar</button>
+      </div>
+  </div>
+  {{> progress}}
+  <div class="panel panel-default panel_form">
+      <div class="panel-body">
+          <form id="form">
+              <div class="form-group col-xs-12 col-sm-6">
+                  <label for="{{object.destinationName}}" class="label_form">{{object.destinationName}}</label>
+                  {{> inputAutocomplete settings=settings id="inputDestinationName" value=lastDestination class="form-control input-sm" required="true"}}
+              </div>
+              <div class="form-group col-xs-6 col-sm-3">
+                  <label for="{{object.openingDate}}" class="label_form">{{object.openingDate}}</label>
+                  <div class="input-group datetimepicker dateOn">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      <input name="calendar" placeholder="DD/MM/YYYY" id="{{object.inputOpeningDate}}" class="set-due-date form-control input-sm" type="text" value={{lastBegin}} required/>
+                  </div>
+              </div>
+              <div class="form-group col-xs-6 col-sm-3">
+                  <label for="{{object.closingDate}}" class="label_form">{{object.closingDate}}</label>
+                  <div class="input-group datetimepicker dateOff" id="{{object.closingDate}}">
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      <input name="calendar" placeholder="DD/MM/YYYY" id="{{object.inputClosingDate}}" class="set-due-date form-control input-sm" type="text" value={{lastEnd}} required/>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+  <div class="panel dtPanel">
+      <table id="dataTable">
+          {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptions }}
+      </table>
+  </div>
+</template>
+
+<template name="QuotationView">
+  <div class="modal fade" id="popup" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div class="col-xs-6 modal-title">
+            {{providerName}} - {{productCode}} - {{productName}}
+            <span class="badge" style="background:{{cover_pregnant}}" title="{{pregnant_message}}">Grávidas</span>
+          </div>
+          <div class="col-xs-5 modal-title-middle">
+            {{quoteDestination}} - {{quoteBegin}} - {{quoteEnd}}
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row" style="background-color: #f4f4f4;">
+            <div class="form-group col-xs-4 quotation_view_main">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-success">
+                    <h3 class="panel-title">Crianças</h3>
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">{{childMin}}</span>
+                    Mímino
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">{{childMax}}</span>
+                    Máximo
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">{{childPwC}}</span>
+                    Custo
+                  </li>
+                  <li class="list-group-item">
+                    <span class="badge">{{childP}}</span>
+                    Preço
+                  </li>
+                </ul>
+            </div>
+            <div class="form-group col-xs-4 quotation_view_main">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                  <h3 class="panel-title">Adultos</h3>
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{adultMin}}</span>
+                  Mímino
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{adultMax}}</span>
+                  Máximo
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{adultPwC}}</span>
+                  Custo
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{adultP}}</span>
+                  Preço
+                </li>
+              </ul>
+            </div>
+            <div class="form-group col-xs-4 quotation_view_main">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                  <h3 class="panel-title">Idosos</h3>
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{elderMin}}</span>
+                  Mímino
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{elderMax}}</span>
+                  Máximo
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{elderPwC}}</span>
+                  Custo
+                </li>
+                <li class="list-group-item">
+                  <span class="badge">{{elderP}}</span>
+                  Preço
+                </li>
+              </ul>
+            </div>
+            <div class="panel dtPanel" style="background-color: transparent;">
+                <table id="dataTable" class="dtPanelView" style="background-color: white; border-radius: 0.2em;">
+                    {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptionsView }}
+                </table>
+            </div>
+          <div class="col-xs-12 purchaseClass">
+            <div class="panel-body panel_form panelPurchase">
+              <div class="panel-body">
+                <form id="formPurchase">
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.merchant_purchase_id}}" class="label_form_purchase">{{purchase.merchant_purchase_id}}</label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.merchant_purchase_id}}"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.product_code}}" class="label_form_purchase">{{purchase.product_code}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.product_code}}" value="{{productCode}}" disabled required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="productName" class="label_form_purchase">Nome do Produto</label>
+                        <input type="text" class="form-control input-sm" value="{{productName}}" disabled/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.destination}}" class="label_form_purchase">{{purchase.destination}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.destination}}" value="{{quoteDestination}}" disabled required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.coverage_begin}}" class="label_form_purchase">{{purchase.coverage_begin}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.coverage_begin}}" value="{{quoteBegin}}" disabled required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.coverage_end}}" class="label_form_purchase">{{purchase.coverage_end}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.coverage_end}}" value="{{quoteEnd}}" disabled required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.insureds.merchant_insured_id}}" class="label_form_purchase">{{purchase.insureds.merchant_insured_id}}</label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.insureds.merchant_insured_id}}"/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.insureds.document_type}}" class="label_form_purchase">{{purchase.insureds.document_type}}<span class="required">*</span></label>
+                        <select id="{{newPurchase.insureds.document_type}}" class="form-control input-sm" required>
+                            <option value="">Selecione...</option>
+                            {{#each documentTypes}}
+                                <option value="{{doc}}">{{doc}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.insureds.document}}" class="label_form_purchase">{{purchase.insureds.document}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.insureds.document}}" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-8">
+                        <label for="{{purchase.insureds.full_name}}" class="label_form_purchase">{{purchase.insureds.full_name}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.insureds.full_name}}" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-4">
+                        <label for="{{purchase.insureds.birth_date}}" class="label_form_purchase">{{purchase.insureds.birth_date}}<span class="required">*</span></label>
+                        <div class="input-group datetimepicker dateFull">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input name="calendar" placeholder="DD/MM/YYYY" id="{{newPurchase.insureds.birth_date}}" class="set-due-date form-control input-sm" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.payment_method}}" class="label_form_purchase">{{purchase.payment_method}}<span class="required">*</span></label>
+                        <select id="{{newPurchase.payment_method}}" class="form-control input-sm" required>
+                            <option value="">Selecione...</option>
+                            {{#each paymentMethods}}
+                                <option value="{{paymentMethods}}">{{paymentMethods}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.price}}" class="label_form_purchase">{{purchase.price}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.price}}" value="{{adultP}}" disabled required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-4">
+                        <label for="{{purchase.parcels}}" class="label_form_purchase">{{purchase.parcels}}<span class="required">*</span></label>
+                        <select id="{{newPurchase.parcels}}" class="form-control input-sm" required>
+                            <option value="">Selecione...</option>
+                            {{#each parcels}}
+                                <option value="{{parcel}}">{{parcel}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-8">
+                        <label for="{{purchase.holder.full_name}}" class="label_form_purchase">{{purchase.holder.full_name}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.holder.full_name}}" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-4">
+                        <label for="{{purchase.holder.cpf}}" class="label_form_purchase">{{purchase.holder.cpf}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.holder.cpf}}" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3">
+                        <label for="{{purchase.creditcard.brand}}" class="label_form_purchase">{{purchase.creditcard.brand}}<span class="required">*</span></label>
+                        <select id="{{newPurchase.creditcard.brand}}" class="form-control input-sm" required>
+                            <option value="">Selecione...</option>
+                            {{#each brands}}
+                                <option value="{{brand}}">{{brand}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-3">
+                        <label for="creditcard_expiration" class="label_form_purchase">Validade<span class="required">*</span></label>
+                        <div class="input-group datetimepicker dateMMYYYY">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <input name="calendar" placeholder="MM/YYYY" id="creditcard_expiration" class="set-due-date form-control input-sm" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-4">
+                        <label for="{{purchase.creditcard.number}}" class="label_form_purchase">{{purchase.creditcard.number}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.creditcard.number}}" required/>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-2">
+                        <label for="{{purchase.creditcard.cvv}}" class="label_form_purchase">{{purchase.creditcard.cvv}}<span class="required">*</span></label>
+                        <input type="text" class="form-control input-sm" id="{{newPurchase.creditcard.cvv}}" required/>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        {{> progressView}}
+        {{> alert}}
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Fechar</button>
+          <button type="button" id="buy" class="btn btn-default btn-sm">Comprar</button>
+          <button type="submit" form="formPurchase" id="savePurchase" class="btn btn-default btn-sm">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

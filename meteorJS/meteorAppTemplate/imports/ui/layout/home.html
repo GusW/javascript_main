@@ -1,0 +1,37 @@
+<template name="Home">
+    <div class="row template_title_row">
+        <div class="col-xs-12" style="text-align:left;">
+            <h3 class="template_title">Home Page</h3>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 home">
+      <div class="panel panel-{{circularType}}">
+        <div class="panel-heading">
+          <h3 class="panel-title">Circulars</h3>
+        </div>
+        <div class="panel-body home-text">
+            There is(are) <strong>{{openCirculars}} circular(s)</strong> whose clousure limit is in this month.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 home">
+      <div class="panel panel-{{incidentType}}">
+        <div class="panel-heading">
+          <h3 class="panel-title">Incidents</h3>
+        </div>
+        <div class="panel-body home-text">
+            There is(are) <strong>{{openIncidents}} incident(s)</strong> closed this month.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 home">
+      <div class="panel panel-{{reportType}}">
+        <div class="panel-heading">
+          <h3 class="panel-title">Reports</h3>
+        </div>
+        <div class="panel-body home-text">
+            There is(are) <strong>{{openReports}} report(s)</strong> whose clousure should be this month.
+        </div>
+      </div>
+    </div>
+</template>

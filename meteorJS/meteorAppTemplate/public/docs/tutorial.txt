@@ -1,0 +1,17 @@
+$ meteor create meteorMasterTemplate
+$ cd meteorMasterTemplate
+$ meteor add twbs:bootstrap
+$ meteor add session
+$ meteor add bigdsk:inputmask
+$ meteor add peppelg:bootstrap-3-modal
+$ meteor add accounts-ui accounts-password
+$ meteor add ephemer:reactive-datatables
+$ meteor add mizzao:autocomplete
+$ meteor add tsega:bootstrap3-datetimepicker
+$ meteor add rzymek:moment
+$ meteor remove insecure
+$ meteor remove autopublish
+$ meteor npm install --save
+$ meteor npm install xlsx --save
+$ meteor npm install dateformat --save
+$ meteor npm install numeral --save

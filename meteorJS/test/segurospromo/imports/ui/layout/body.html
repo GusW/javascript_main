@@ -1,0 +1,11 @@
+<body>
+        {{> navbar}}
+        {{> modalBody}}
+  <footer class="footer">
+    {{> footer}}
+  </footer>
+</body>
+
+<template name="modalBody">
+    {{#if activeModal}} {{> Template.dynamic template=activeModal}} {{/if}}
+</template>

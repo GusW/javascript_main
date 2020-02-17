@@ -1,0 +1,15 @@
+<body>
+        {{> header}}
+        {{#if currentUser}}
+            {{> modalBody}}
+        {{else}}
+            {{> Login}}
+        {{/if}}
+  <footer class="footer">
+    {{> footer}}
+  </footer>
+</body>
+
+<template name="modalBody">
+    {{#if activeModal}} {{> Template.dynamic template=activeModal}} {{/if}}
+</template>

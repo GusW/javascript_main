@@ -1,0 +1,51 @@
+<template name="Parameter">
+    <div class="row template_title_row">
+        <div class="col-xs-8" style="text-align:left;">
+            <h3 class="template_title">{{object.title}}</h3>
+        </div>
+        <div class="col-xs-4 title_btns" style="text-align:right;">
+            <button id="btnExport" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Export {{object.name}} List (CSV)">Export</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel dtPanel">
+        <table id="dataTable">
+            {{> ReactiveDatatable tableData=reactiveDataFunction options=dtOptions }}
+        </table>
+    </div>
+</template>
+
+<template name="ParameterEdit">
+    <div class="row template_title_row">
+        <div class="col-xs-8" style="text-align:left;">
+            <h3 class="template_title">{{object.titleEdit}} - {{activeObject.penalty}}</h3>
+        </div>
+        <div class="col-xs-4 title_btns" style="text-align:right;">
+            <button id="btnSave" type="submit" form="form" class="btn btn-default btn-sm" data-toggle="tooltip" title="Update {{object.name}}">Save</button>
+            <button id="btnCancel" type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Cancel {{object.name}} Update">Cancel</button>
+        </div>
+    </div>
+    {{> alert}}
+    <div class="panel panel-default panel_form">
+        <div class="panel-body">
+            <form id="form">
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.factor01}}" class="label_form">{{object.factor01}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" placeholder="0.00" id="{{object.inputF1}}" value="{{activeObject.factor01}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.factor02}}" class="label_form">{{object.factor02}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" placeholder="0.00" id="{{object.inputF2}}" value="{{activeObject.factor02}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.factor03}}" class="label_form">{{object.factor03}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" placeholder="0.00" id="{{object.inputF3}}" value="{{activeObject.factor03}}"/>
+                </div>
+                <div class="form-group col-xs-12 col-sm-6 col-md-3">
+                    <label for="{{object.factor04}}" class="label_form">{{object.factor04}}<span class="required">*</span></label>
+                    <input type="text" class="form-control input-sm" placeholder="0.00" id="{{object.inputF4}}" value="{{activeObject.factor04}}"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
