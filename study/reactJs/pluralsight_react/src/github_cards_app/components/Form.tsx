@@ -1,9 +1,11 @@
 import React from 'react';
-import consumeGithubAPI from '../API';
+import getUserFromGithubAPI from '../API';
 
 
 interface FormProps {
     onSubmit: Function;
+    onUserNotFound: Function;
+    onUserNotFoundMessage: Function;
 }
 
 interface FormState {
@@ -20,9 +22,14 @@ class Form extends React.Component<FormProps, FormState> {
     }
     handleSubmit = async (ev: React.SyntheticEvent) => {
         ev.preventDefault();
-        const profileData = await consumeGithubAPI(this.state.githubUsername);
-        this.props.onSubmit(profileData);
-        this.setState({ githubUsername: '' })
+        const userProfile = await getUserFromGithubAPI(this.state.githubUsername);
+        if (userProfile.name === null && userProfile.avatar_url === null && userProfile.company === null) {
+            this.props.onUserNotFoundMessage(userProfile.error);
+            this.props.onUserNotFound();
+        } else {
+            this.props.onSubmit(userProfile);
+            this.setState({ githubUsername: '' })
+        }
     };
 
     handleOnChange = (ev: React.FormEvent<HTMLInputElement>) => this.setState({ githubUsername: ev.currentTarget.value })

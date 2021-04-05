@@ -13,8 +13,8 @@ class Card extends React.Component<CardProps> {
             <div className="github-profile">
                 <img src={this.props.avatar_url} alt="placeholder for profile pricture" />
                 <div className="info">
-                    <div className="name">{this.props.name}</div>
-                    <div className="company">{this.props.company}</div>
+                    <div className="name">Name: {this.props.name}</div>
+                    <div className="company">Company: {this.props.company}</div>
                 </div>
             </div>
         )
