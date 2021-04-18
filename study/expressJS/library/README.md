@@ -12,6 +12,10 @@
 
 #### $ `npm install jquery bootstrap`
 
+#### $ `npm install ejs`
+
+#### Install vscode EJS extension
+
 #
 
 ### Run Debug in Fish Shell
@@ -30,8 +34,22 @@
 
 #
 
+## DevDependencies
+
+#
+
+#### $ `npm install eslint`
+
+#### $ `eslint init`
+
+#### Install vscode ESLint extension
+
+#### $ `npm install nodemon`
+
+#
+
 ## Troubleshooting
 
 #
 
-#### $ `lsof -i tcp:3000 `
+#### $ `lsof -i tcp:3000`
