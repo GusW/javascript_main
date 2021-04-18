@@ -48,6 +48,39 @@
 
 #
 
+## Databases
+
+#
+
+#### $ `docker volume create PSLibrary`
+
+#### $ `docker run --name PSLibrary -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
+
+#### $ `sudo docker ru --name PSLibrary -v /var/lib/docker/volumes/PSLibrary/_data:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
+
+#### $ `docker exec -it PSLibrary mysql -uroot -p`
+
+    mysql > CREATE DATABASE PSLibrary;
+
+    mysql > USE PSLibrary;
+
+    mysql > CREATE TABLE books (
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> title VARCHAR(255) NOT NULL,
+    -> author VARCHAR(255) NOT NULL);
+
+    mysql > INSERT INTO books(title, author)
+    -> ("War and Peace", "Lev Nikolayevich Tolstoy"),
+    -> ("Les Miserables", "Victor Hugo"),
+    -> ("The Time Machine", "H. G. Wells"),
+    -> ("A Journey into the Center of the Earth", "Jules Verne")
+    -> VALUES ("The Dark World", "Henry Kuttner"),
+    -> ("The Wind in the Willows", "Kenneth Grahame"),
+    -> ("Life On The Mississippi", "Mark Twain"),
+    -> ("Childhood", "Lev Nikolayevich Tolstoy");
+
+#
+
 ## Troubleshooting
 
 #

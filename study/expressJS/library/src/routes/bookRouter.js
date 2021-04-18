@@ -10,7 +10,7 @@ const books = [
     read: false,
   },
   {
-    title: 'Les MisĂ©rables',
+    title: 'Les Miserables',
     genre: 'Historical Fiction',
     author: 'Victor Hugo',
     read: false,
