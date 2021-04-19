@@ -4,9 +4,8 @@
 
 #### Create file `<projectFolder>/.npmrc` with:
 
-#### `save=true`
-
-#### `save-exact=true`
+    save=true
+    save-exact=true
 
 #### $ `npm install express chalk debug morgan`
 
@@ -15,6 +14,8 @@
 #### $ `npm install ejs`
 
 #### Install vscode EJS extension
+
+#### $ `npm install mysql2`
 
 #
 
@@ -56,7 +57,7 @@
 
 #### $ `docker run --name PSLibrary -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
 
-#### $ `sudo docker ru --name PSLibrary -v /var/lib/docker/volumes/PSLibrary/_data:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
+#### $ `docker run -p 3306:3306 --name PSLibrary -v PSLibrary:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
 
 #### $ `docker exec -it PSLibrary mysql -uroot -p`
 
@@ -65,19 +66,20 @@
     mysql > USE PSLibrary;
 
     mysql > CREATE TABLE books (
-    -> id INT AUTO_INCREMENT PRIMARY KEY,
-    -> title VARCHAR(255) NOT NULL,
-    -> author VARCHAR(255) NOT NULL);
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     title VARCHAR(255) NOT NULL,
+     author VARCHAR(255) NOT NULL);
 
     mysql > INSERT INTO books(title, author)
-    -> ("War and Peace", "Lev Nikolayevich Tolstoy"),
-    -> ("Les Miserables", "Victor Hugo"),
-    -> ("The Time Machine", "H. G. Wells"),
-    -> ("A Journey into the Center of the Earth", "Jules Verne")
-    -> VALUES ("The Dark World", "Henry Kuttner"),
-    -> ("The Wind in the Willows", "Kenneth Grahame"),
-    -> ("Life On The Mississippi", "Mark Twain"),
-    -> ("Childhood", "Lev Nikolayevich Tolstoy");
+     VALUES
+      ("War and Peace", "Lev Nikolayevich Tolstoy"),
+      ("Les Miserables", "Victor Hugo"),
+      ("The Time Machine", "H. G. Wells"),
+      ("A Journey into the Center of the Earth", "Jules Verne"),
+      ("The Dark World", "Henry Kuttner"),
+      ("The Wind in the Willows", "Kenneth Grahame"),
+      ("Life On The Mississippi", "Mark Twain"),
+      ("Childhood", "Lev Nikolayevich Tolstoy");
 
 #
 

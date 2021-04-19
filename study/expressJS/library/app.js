@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
+const sqlConnection = require('./src/lib/db');
 
 // App
 const app = express();
@@ -14,7 +15,7 @@ const appNav = [
 ];
 
 // Routers
-const bookRouter = require('./src/routes/bookRouter')(appNav);
+const bookRouter = require('./src/routes/bookRouter')(appNav, sqlConnection);
 
 // MIDDLEWARES:
 // logging

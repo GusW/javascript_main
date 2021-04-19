@@ -9,7 +9,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <link
       href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css"
       rel="stylesheet"
@@ -102,7 +102,7 @@
           <div class="panel">
             <div class="panel-body">
               <!--/stories-->
-              <%books.map((book, idx)=>{%>
+              <%books.map(book=>{%>
               <div class="row">
                 <br />
                 <div class="col-md-2 col-sm-3 text-center">
@@ -127,8 +127,8 @@
                         <small
                           style="font-family: courier, 'new courier'"
                           class="text-muted"
-                          ><%=book.genre%>
-                          <a href="/books/<%=idx%>" class="text-muted"
+                        >
+                          <a href="/books/<%=book.id%>" class="text-muted"
                             >Read More</a
                           ></small
                         >
@@ -199,7 +199,7 @@
       </div>
     </footer>
     <!-- script references -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
