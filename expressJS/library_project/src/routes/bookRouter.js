@@ -7,8 +7,8 @@ const router = (appNav, sqlConnection) => {
   // bookRouter.route('/').get((req, res) => res.send('we have books'));
   let books = [];
   sqlConnection.query('SELECT * FROM books;', (err, res) => {
-    debug(`ERR: ${err}`);
     if (err !== undefined && err !== null) {
+      debug(`ERR: ${err}`);
       throw err;
     }
     debug(`RES: ${res}`);
