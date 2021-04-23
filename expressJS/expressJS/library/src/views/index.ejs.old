@@ -1,0 +1,11 @@
+<html>
+  <head> </head>
+  <body>
+    <h1>Welcome to <%=title%></h1>
+    <ul>
+      <%list.map(item => {%>
+      <li><%=item%></li>
+      <%})%>
+    </ul>
+  </body>
+</html>
