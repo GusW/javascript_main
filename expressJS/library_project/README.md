@@ -17,6 +17,8 @@
 
 #### $ `npm install mysql2`
 
+#### $ `npm install mongodb`
+
 #
 
 ### Run Debug in Fish Shell
@@ -49,13 +51,11 @@
 
 #
 
-## Databases
+## Databases - MySQL
 
 #
 
 #### $ `docker volume create PSLibrary`
-
-#### $ `docker run --name PSLibrary -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
 
 #### $ `docker run -p 3306:3306 --name PSLibrary -v PSLibrary:/var/lib/mysql/ -e MYSQL_ROOT_PASSWORD=library -d mysql:latest`
 
@@ -80,6 +80,23 @@
       ("The Wind in the Willows", "Kenneth Grahame"),
       ("Life On The Mississippi", "Mark Twain"),
       ("Childhood", "Lev Nikolayevich Tolstoy");
+
+#
+
+## Databases - MongoDB
+
+#
+
+#### $ `docker volume create LibMongo`
+
+#### $ `docker run -p 27017:27017 --name LibMongo -v LibMongo:/data/db -d mongo`
+
+#### $ `docker exec -it LibMongo bash`
+
+    # mongo
+    > show dbs
+    > user libraryApp
+    > db.books.find().pretty()
 
 #
 

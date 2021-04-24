@@ -4,18 +4,20 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
-const sqlConnection = require('./src/lib/db');
+const sqlConnection = require('./src/lib/mysqlConn');
 
 // App
 const app = express();
 const appPort = process.env.PORT || 3000;
 const appNav = [
   { title: 'Books', link: '/books' },
+  { title: 'Admin Books', link: '/admin/books' },
   { title: 'Authors', link: '/authors' },
 ];
 
 // Routers
 const bookRouter = require('./src/routes/bookRouter')(appNav, sqlConnection);
+const adminRouter = require('./src/routes/adminRouter')(appNav);
 
 // MIDDLEWARES:
 // logging
@@ -43,6 +45,7 @@ app.use(
   express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist')),
 );
 app.use('/books', bookRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', (req, res) => {
   // res.send('Hello from my lib app');
