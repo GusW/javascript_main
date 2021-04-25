@@ -4,11 +4,18 @@ const debug = require('debug')('app:bookRouter');
 const bookRouter = express.Router();
 
 const router = (appNav, sqlConnection) => {
+  bookRouter.use((req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect('/');
+    }
+  });
   // bookRouter.route('/').get((req, res) => res.send('we have books'));
   let books = [];
   sqlConnection.query('SELECT * FROM books;', (err, res) => {
-    debug(`ERR: ${err}`);
     if (err !== undefined && err !== null) {
+      debug(`ERR: ${err}`);
       throw err;
     }
     debug(`RES: ${res}`);
