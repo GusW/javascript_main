@@ -98,16 +98,18 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-12">
           <div class="panel">
             <div class="panel-body">
+              <!--/stories-->
               <div class="row">
-                <div class="col-sm-12 text-center">
-                  Sign Up! or <a href="/auth/signIn">Sign In</a>
-                  <form name="signUpForm" action="/auth/signup" method="post">
-                    Username: <input name="username" id="username" /><br />
+                <br />
+                <div class="col-md-2 col-sm-3 text-center">
+                  Sign In!
+                  <form name="signInForm" action="/auth/signin" method="post">
+                    UserName: <input name="username" id="username" /><br />
                     Password: <input name="password" id="password" /><br />
-                    <input type="submit" value="Sign Up" />
+                    <input type="submit" value="Sign in" />
                   </form>
                 </div>
               </div>
@@ -115,6 +117,7 @@
             </div>
           </div>
         </div>
+        <!--/col-12-->
       </div>
     </div>
 
@@ -164,7 +167,7 @@
       </div>
     </footer>
     <!-- script references -->
-    <script src="/js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>

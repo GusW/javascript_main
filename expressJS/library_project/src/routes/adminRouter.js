@@ -1,6 +1,7 @@
 const express = require('express');
 const debug = require('debug')('app:adminRouter');
-const { MongoClient, ObjectID } = require('mongodb');
+const { ObjectID } = require('mongodb');
+const { bookCollection } = require('../lib/mongoConn');
 
 const adminRouter = express.Router();
 
@@ -56,52 +57,67 @@ const booksToInsert = [
 ];
 
 const router = (appNav) => {
-  const url = 'mongodb://localhost:27017';
-  const dbName = 'libraryApp';
-  let client;
-  let collection;
-  const bookCollection = async () => {
-    try {
-      client = await MongoClient.connect(url);
-      debug('Connected to mongodb');
-      const db = client.db(dbName);
-      collection = await db.collection('books');
-      debug(collection);
-    } catch (err) {
-      debug(err.stack);
+  adminRouter.use((req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect('/');
     }
-    return { collection, client };
-  };
-
+  });
   adminRouter.route('/books').get((_req, res) => {
     const getBooks = async () => {
-      await bookCollection();
-      const books = await collection.find().toArray();
-      debug(books.length);
-      res.render('bookListViewMongo', { title: 'MyBooks', appNav, books });
-      client.close();
+      let client;
+      try {
+        const { dbClient, collection } = await bookCollection();
+        client = dbClient;
+        const books = await collection.find().toArray();
+        res.render('bookListViewMongo', { title: 'MyBooks', appNav, books });
+      } catch (error) {
+        debug(error.stack);
+      } finally {
+        if (client != null) {
+          client.close();
+        }
+      }
     };
     getBooks();
   });
 
   adminRouter.route('/books/:id').get((req, res) => {
     const getBook = async () => {
-      await bookCollection();
-      const { id } = req.params;
-      const book = await collection.findOne({ _id: new ObjectID(id) });
-      debug(book);
-      res.render('bookView', { title: 'MyBooks', appNav, book });
-      client.close();
+      let client;
+      try {
+        const { dbClient, collection } = await bookCollection();
+        client = dbClient;
+        const { id } = req.params;
+        const book = await collection.findOne({ _id: new ObjectID(id) });
+        res.render('bookView', { title: 'MyBooks', appNav, book });
+      } catch (error) {
+        debug(error.stack);
+      } finally {
+        if (client != null) {
+          client.close();
+        }
+      }
     };
     getBook();
   });
 
   adminRouter.route('/insert').get((_req, res) => {
     const insertBooks = async () => {
-      await bookCollection();
-      const response = await collection.insertMany(booksToInsert);
-      res.json(response);
-      client.close();
+      let client;
+      try {
+        const { dbClient, collection } = await bookCollection();
+        client = dbClient;
+        const response = await collection.insertMany(booksToInsert);
+        res.json(response);
+      } catch (error) {
+        debug(error.stack);
+      } finally {
+        if (client != null) {
+          client.close();
+        }
+      }
     };
     insertBooks();
   });

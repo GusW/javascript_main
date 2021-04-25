@@ -19,6 +19,8 @@
 
 #### $ `npm install mongodb`
 
+#### $ `npm install passport passport-local cookie-parser express-session`
+
 #
 
 ### Run Debug in Fish Shell
@@ -104,4 +106,4 @@
 
 #
 
-#### $ `lsof -i tcp:3000`
+#### $ `lsof -i tcp:<somePortNumber>`
