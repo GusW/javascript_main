@@ -21,6 +21,8 @@
 
 #### $ `npm install passport passport-local cookie-parser express-session`
 
+#### $ `npm install axios xml2js`
+
 #
 
 ### Run Debug in Fish Shell
