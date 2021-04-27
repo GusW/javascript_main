@@ -1,47 +1,22 @@
 const express = require('express');
-const debug = require('debug')('app:bookRouter');
+const authController = require('../controllers/authController');
+const bookController = require('../controllers/bookController');
 
 const bookRouter = express.Router();
 
 const router = (appNav, sqlConnection) => {
-  bookRouter.use((req, res, next) => {
-    if (req.user) {
-      next();
-    } else {
-      res.redirect('/');
-    }
-  });
-  // bookRouter.route('/').get((req, res) => res.send('we have books'));
-  let books = [];
-  sqlConnection.query('SELECT * FROM books;', (err, res) => {
-    if (err !== undefined && err !== null) {
-      debug(`ERR: ${err}`);
-      throw err;
-    }
-    debug(`RES: ${res}`);
-    if (res !== undefined && res !== null) {
-      books = res;
-    }
-  });
-  bookRouter.route('/').get((req, res) => {
-    res.render('bookListView', { title: 'MyBooks', appNav, books });
-  });
+  const { authMiddleware } = authController(appNav);
+  // eslint-disable-next-line object-curly-newline
+  const { getIndex, bookMiddleware, getById } = bookController(
+    appNav,
+    sqlConnection,
+  );
 
-  bookRouter
-    .route('/:id')
-    .all((req, res, next) => {
-      const { id } = req.params;
-      // TODO make a query to return SELECT * FROM books WHERE id = id;
-      const bookArray = books.filter((bookItem) => bookItem.id === Number(id));
-      if (bookArray === undefined) {
-        res.status(404).send('Could not find book');
-      }
-      [req.book] = bookArray;
-      next();
-    })
-    .get((req, res) => {
-      res.render('bookView', { appNav, book: req.book });
-    });
+  bookRouter.use(authMiddleware);
+
+  bookRouter.route('/').get(getIndex);
+
+  bookRouter.route('/:id').all(bookMiddleware).get(getById);
 
   return bookRouter;
 };
