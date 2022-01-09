@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.21.2",
     "bootstrap": "4.6.0",
     "chalk": "4.1.0",
     "cookie-parser": "1.4.5",
