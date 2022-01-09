@@ -1,0 +1,38 @@
+
+
+GET http://0.0.0.0:5000/api/v1/restaurants?page=0 HTTP/1.1
+
+GET http://0.0.0.0:5000/api/v1/restaurants?name=west&zipcode=10012&cuisine=American&page=0 HTTP/1.1
+
+GET http://0.0.0.0:5000/api/v1/restaurants/cuisines HTTP/1.1
+
+GET http://0.0.0.0:5000/api/v1/restaurants/id/5eb3d669b31de5d588f463aa HTTP/1.1
+
+POST http://0.0.0.0:5000/api/v1/restaurants/review HTTP/1.1
+content-type: application/json
+
+{
+    "restaurant_id": "5eb3d669b31de5d588f463aa",
+    "text": "new for testing purposes",
+    "user_id": "3",
+    "name": "haha"
+}
+
+
+PUT http://0.0.0.0:5000/api/v1/restaurants/review HTTP/1.1
+content-type: application/json
+
+{
+    "review_id": "61d8848f24083b5d37aa1017",
+    "text": "changed or created?",
+    "user_id": "3"
+}
+
+
+DELETE http://0.0.0.0:5000/api/v1/restaurants/review?id=61d81cf0ef9618870834b462 HTTP/1.1
+content-type: application/json
+
+{
+    "user_id": "1"
+}
+
