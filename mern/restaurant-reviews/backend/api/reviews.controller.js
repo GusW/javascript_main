@@ -1,4 +1,5 @@
 import ReviewsDAO from "../dao/reviewsDAO.js"
+import validator from "../schemas/validator.js"
 
 export default class ReviewsController {
   static _reviewWrapper = async ({
@@ -17,7 +18,8 @@ export default class ReviewsController {
   }
 
   static createReview = async (req, res) => {
-    const { restaurant_id, text, name, user_id } = req.body
+    const { validateReviewCreate } = validator(req.body)
+    const { restaurant_id, text, name, user_id } = validateReviewCreate()
     const user = {
       name,
       _id: user_id,
@@ -35,7 +37,8 @@ export default class ReviewsController {
   }
 
   static updateReview = async (req, res) => {
-    const { review_id, text, user_id } = req.body
+    const { validateReviewUpdate } = validator(req.body)
+    const { review_id, text, user_id } = validateReviewUpdate()
     await this._reviewWrapper({
       targetFn: ReviewsDAO.updateReview,
       args: {
@@ -49,12 +52,12 @@ export default class ReviewsController {
   }
 
   static deleteReview = async (req, res) => {
-    const review_id = req.query.id
-    const user_id = req.body.user_id
+    const { validateReviewDelete } = validator({ ...req.query, ...req.body })
+    const { id, user_id } = validateReviewDelete()
     await this._reviewWrapper({
       targetFn: ReviewsDAO.deleteReview,
       args: {
-        review_id,
+        review_id: id,
         user_id,
       },
       res,

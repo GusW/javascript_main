@@ -4,6 +4,9 @@ $ mkdir backend && cd "$_"
 $ npm init -y
 $ npm install express cors mongodb dotenv
 $ npm install -g eslint nodemon
+$ npm install --save-dev nodemon
+# addons: validation, req/res logging
+$ npm i --save ajv morgan
 ```
 
 add row to `/restaurant-reviews/backend/package.json`:

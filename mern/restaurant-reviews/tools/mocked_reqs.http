@@ -13,9 +13,9 @@ content-type: application/json
 
 {
     "restaurant_id": "5eb3d669b31de5d588f463aa",
-    "text": "new for testing purposes",
+    "text": "new for validation purposes",
     "user_id": "3",
-    "name": "haha"
+    "name": "tata"
 }
 
 
@@ -29,7 +29,7 @@ content-type: application/json
 }
 
 
-DELETE http://0.0.0.0:5000/api/v1/restaurants/review?id=61d81cf0ef9618870834b462 HTTP/1.1
+DELETE http://0.0.0.0:5000/api/v1/restaurants/review?id=61e3fd8461f20fb49dd23d8f HTTP/1.1
 content-type: application/json
 
 {
