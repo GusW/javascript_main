@@ -1,0 +1,10 @@
+{
+  "name": "04_11_strategy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "morse": "^0.1.0"
+  }
+}

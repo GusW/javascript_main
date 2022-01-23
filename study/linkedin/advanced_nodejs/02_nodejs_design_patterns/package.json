@@ -1,0 +1,9 @@
+{
+  "name": "02_nodejs_design_patterns",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "package-lock.json": "^1.0.0"
+  }
+}
