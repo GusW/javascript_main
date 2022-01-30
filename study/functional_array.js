@@ -6,17 +6,19 @@ const exampleArray = [
   { key1: 5, key2: 25, key3: 125 },
   { key1: 6, key2: 36, key3: 216 },
   { key1: 7, key2: 49, key3: 343 },
-];
+]
 
-console.log(exampleArray.find((set) => set.key2 === 9));
+console.log(exampleArray.find((set) => set.key2 === 9))
 
-console.log(exampleArray.filter((set) => set.key3 % 2 === 0));
+console.log(exampleArray.filter((set) => set.key3 % 2 === 0))
 
-console.log(exampleArray.map((set) => ({ newKey: Object.values(set) })));
+console.log(exampleArray.map((set) => ({ newKey: Object.values(set) })))
+
+exampleArray.forEach((item) => console.log(`My crazy ${item.key3}`))
 
 console.log(
   Object.values(exampleArray?.[0]).reduce(
     (accumulator, currentValue, idx) => accumulator + currentValue + idx,
     0
   )
-);
+)
