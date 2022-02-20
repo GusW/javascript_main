@@ -14,10 +14,7 @@ module.exports = (config) => {
     })
   }
 
-  const _getServiceIp = (req) =>
-    req.socket.remoteAddress.includes('::')
-      ? `[${req.socket.remoteAddress}]`
-      : req.socket.remoteAddress
+  const _getServiceIp = (req) => req.socket.remoteAddress.replace(/^.*:/, '')
 
   service.put(
     '/register/:servicename/:serviceversion/:serviceport',
