@@ -1,0 +1,3 @@
+PUT http://localhost:3000/register/awesomeservice/1.0.0/3001
+
+DELETE http://localhost:3000/register/awesomeservice/1.0.0/3001
