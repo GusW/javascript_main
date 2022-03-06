@@ -26,13 +26,18 @@
 ### web framework
 
 - express
+  - express-rate-limit
 - body-parser
 - cors
+- cookie-session
+- csurf (CSRF protection)
 - compression (compress response)
+- helmet (security headers)
 
 ### hashing/cryptography
 
 - bcrypt
+- crypto
 - uuid
 
 ### session management
@@ -69,10 +74,6 @@
 ### process management/deployment
 
 - pm2
-
-### securityy
-
-- helmet
 
 ## -D
 
