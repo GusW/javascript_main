@@ -1,0 +1,7 @@
+{
+  "presets": [
+    "@babel/preset-env", // Handles ES6 into CommonJS
+    "@babel/preset-react" // Handles JSX
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}
