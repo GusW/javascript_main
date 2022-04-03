@@ -1,4 +1,4 @@
-export const people = [
+export let people = [
   {
     id: 123,
     name: 'John Doe',
@@ -22,7 +22,7 @@ export const people = [
   },
 ]
 
-export const products = [
+export let products = [
   {
     id: 1234,
     name: 'Flat-Screen TV',

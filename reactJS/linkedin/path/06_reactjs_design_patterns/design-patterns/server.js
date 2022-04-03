@@ -1,10 +1,11 @@
 import express, { json } from 'express'
-import { people as users, products } from './src/utils/dummyData.js'
+import { people, products } from './src/utils/dummyData.js'
 
 const app = express()
 
 app.use(json())
 
+let users = [...people]
 let currentUser = [...users].shift()
 
 app.get('/current-user', (req, res) => {
@@ -21,7 +22,7 @@ app.post('/users/:id', (req, res) => {
   const { id } = req.params
   const { user: updatedUser } = req.body
 
-  users = users.map((user) => (user.id === id ? updatedUser : user))
+  users = users.map((user) => (user.id === parseInt(id) ? updatedUser : user))
 
   res.json(users.find((user) => user.id === id))
 })

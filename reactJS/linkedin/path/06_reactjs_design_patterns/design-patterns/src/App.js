@@ -23,6 +23,11 @@ import { ControlledForm } from './components/ControlledForm.js'
 import { ControlledModal } from './components/ControlledModal.js'
 import { UncontrolledOnboardingFlow } from './components/UncontrolledOnboardingFlow.js'
 import { ControlledOnboardingFlow } from './components/ControlledOnboardingFlow.js'
+// Chapter 4
+import { printProps } from './components/printProps.js'
+import { withUser } from './containers/withUser.js'
+import { UserInfoForm } from './components/UserInfoForm.js'
+// Chapter 5
 
 const LeftHandComponent = ({ children, name }) => (
   <>
@@ -76,11 +81,15 @@ const StepFour = ({ goToNext, goToPrevious }) => (
   </>
 )
 
+const UserInfoWrapped = printProps(UserInfo)
+
+const UserInfoWithLoader = withUser(UserInfo, '234')
+
 const App = () => {
   // Controlled Modal
   const [shouldShowModal, setShouldShowModal] = useState(false)
 
-  // Controlled Modal
+  // Controlled Onboarding Flow
   const [onboardingData, setOnboardingData] = useState({})
   const [currentIndex, setCurrentIndex] = useState(0)
   const _onNext = (stepData) => {
@@ -93,6 +102,26 @@ const App = () => {
 
   return (
     <>
+      {/* Chapter 5 - Custom hooks */}
+      <>
+        {/* useCurrentUser Hook */}
+        <></>
+      </>
+      {/* Chapter 4 - Higher-Order Components */}
+      <>
+        {/* Printing props with HOC */}
+        <>
+          <UserInfoWrapped a={1} b="Hello" c={{ name: 'Gus' }} />
+        </>
+        {/* Loading data with HOC */}
+        <>
+          <UserInfoWithLoader />
+        </>
+        {/* Forms with HOC */}
+        <>
+          <UserInfoForm />
+        </>
+      </>
       {/* Chapter 3 - Controlled and Uncontrolled Components */}
       <>
         {/* Uncontrolled only exposes its internal state on a "final" event */}
