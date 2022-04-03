@@ -34,6 +34,13 @@ import { UserInfoWithuseResource } from './components/people/UserInfoWithuseReso
 import { ProductInfoWithuseResource } from './components/products/ProductInfoWithuseResource.js'
 import { UserInfoWithuseDataSource } from './components/people/UserInfoWithuseDataSource.js'
 // Chapter 6
+import { nestedObject } from './utils/dummyData.js'
+import { RecursiveComponent } from './components/RecursiveComponent.js'
+import { DangerButton, BigSuccessButton } from './components/composition.js'
+import {
+  DangerButtonPartial,
+  BigSuccessButtonPartial,
+} from './components/partiallyApply.js'
 
 const LeftHandComponent = ({ children, name }) => (
   <>
@@ -108,6 +115,25 @@ const App = () => {
 
   return (
     <>
+      {/* Chapter 6 - Functional Programming */}
+      <>
+        <h2>Chapter 6</h2>
+        {/* RecursiveComponent */}
+        <>
+          <RecursiveComponent data={nestedObject} />
+        </>
+        {/* Composition */}
+        <>
+          <DangerButton text="Don't do it!" />
+          <BigSuccessButton text="Yes!!!" />
+        </>
+        {/* Partial */}
+        <>
+          <br />
+          <DangerButtonPartial text="No partail!" />
+          <BigSuccessButtonPartial text="Partial" />
+        </>
+      </>
       {/* Chapter 5 - Custom hooks */}
       <>
         <h2>Chapter 5</h2>

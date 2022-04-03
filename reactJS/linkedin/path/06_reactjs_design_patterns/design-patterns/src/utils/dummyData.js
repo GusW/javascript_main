@@ -1,4 +1,4 @@
-export let people = [
+export const people = [
   {
     id: 123,
     name: 'John Doe',
@@ -22,7 +22,7 @@ export let people = [
   },
 ]
 
-export let products = [
+export const products = [
   {
     id: 1234,
     name: 'Flat-Screen TV',
@@ -45,3 +45,25 @@ export let products = [
     rating: 4.2,
   },
 ]
+
+export const nestedObject = {
+  a: 1,
+  b: {
+    b1: 4,
+    b2: {
+      b23: 'Hello',
+    },
+    b3: {
+      b31: {
+        message: 'Hi',
+      },
+      b32: {
+        message: 'Hi',
+      },
+    },
+  },
+  c: {
+    c1: 2,
+    c2: 3,
+  },
+}
