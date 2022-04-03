@@ -28,6 +28,12 @@ import { printProps } from './components/printProps.js'
 import { withUser } from './containers/withUser.js'
 import { UserInfoForm } from './components/UserInfoForm.js'
 // Chapter 5
+import { UserInfoWithuseCurrentUser } from './components/people/UserInfoWithuseCurrentUser.js'
+import { UserInfoWithuseUser } from './components/people/UserInfoWithuseUser.js'
+import { UserInfoWithuseResource } from './components/people/UserInfoWithuseResource.js'
+import { ProductInfoWithuseResource } from './components/products/ProductInfoWithuseResource.js'
+import { UserInfoWithuseDataSource } from './components/people/UserInfoWithuseDataSource.js'
+// Chapter 6
 
 const LeftHandComponent = ({ children, name }) => (
   <>
@@ -104,11 +110,28 @@ const App = () => {
     <>
       {/* Chapter 5 - Custom hooks */}
       <>
+        <h2>Chapter 5</h2>
         {/* useCurrentUser Hook */}
-        <></>
+        <>
+          <UserInfoWithuseCurrentUser />
+        </>
+        {/* useUser Hook */}
+        <>
+          <UserInfoWithuseUser userId={234} />
+        </>
+        {/* useResource Hook */}
+        <>
+          <UserInfoWithuseResource userId="123" />
+          <ProductInfoWithuseResource productId="1234" />
+        </>
+        {/* useDataSource Hook */}
+        <>
+          <UserInfoWithuseDataSource userId="345" />
+        </>
       </>
       {/* Chapter 4 - Higher-Order Components */}
       <>
+        <h2>Chapter 4</h2>
         {/* Printing props with HOC */}
         <>
           <UserInfoWrapped a={1} b="Hello" c={{ name: 'Gus' }} />
@@ -124,6 +147,7 @@ const App = () => {
       </>
       {/* Chapter 3 - Controlled and Uncontrolled Components */}
       <>
+        <h2>Chapter 3</h2>
         {/* Uncontrolled only exposes its internal state on a "final" event */}
         <>
           <UncontrolledForm />
@@ -173,6 +197,7 @@ const App = () => {
       </>
       {/* Chapter 2 - Container Components */}
       <>
+        <h2>Chapter 2</h2>
         {/* Loads 1 specific user from server */}
         <>
           <CurrentUserLoader>
@@ -215,6 +240,7 @@ const App = () => {
       </>
       {/* Chapter 1 - Layout Components */}
       <>
+        <h2>Chapter 1</h2>
         {/* Show Modal */}
         <>
           <Modal>
