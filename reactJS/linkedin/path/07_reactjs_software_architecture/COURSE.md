@@ -87,3 +87,29 @@ npm i recoil redux react-redux mobx
 # react 18+ is not yet supported by mobx-react-lite
 npm i --force mobx-react-lite
 ```
+
+---
+
+### `Data Loading and Websockets`
+
+---
+
+#### Code
+
+```bash
+# create React App
+npx create-react-app 02_ssr
+npm i react-router-dom
+
+# create Server
+npm i express
+npm i @babel/core @babel/node @babel/preset-env @babel/preset-react nodemon -S
+npm i styled-components isomorphic-fetch
+# run Server
+npx babel-node server.js
+
+# build React App (minified transpiled React code)
+npm run build
+# run Server with nodemon
+npx nodemon --exec npx babel-node server.js
+```
