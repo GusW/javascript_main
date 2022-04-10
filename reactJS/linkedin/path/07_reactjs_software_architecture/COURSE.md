@@ -113,3 +113,29 @@ npm run build
 # run Server with nodemon
 npx nodemon --exec npx babel-node server.js
 ```
+
+---
+
+### `Folder Structure and Naming Conventions`
+
+---
+
+#### `Monoliths`
+
+- All code for the project is included in a single codebase, which generally has to be modified and deployed all at once.
+  - Simple at first
+  - Usually the default for new projects
+  - Can become unmanageable if you're not careful (and often even if you are)
+  - Ideal for very small teams working on short-term projects
+
+#### `Multi-repos`
+
+- The project's code is separated into multiple codebases, each of which can usually be worked on and deployed independently.
+  - Add some overhead for setup
+  - Make the deployment process more complex
+  - ALlow independent versioning of different parts
+  - Generally better for companies with fairly isolated teams
+
+#### `Monorepos`
+
+- Monorepos are a mix of monoliths and multi-repos. They keep all the code in the same codebase but organize it so each piece is largely independent.
