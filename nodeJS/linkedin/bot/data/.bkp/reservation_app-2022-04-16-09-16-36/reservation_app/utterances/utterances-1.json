@@ -1,0 +1,144 @@
+{
+    "utterances": [
+        {
+            "text": "Could you please book a table for seven next Friday at 2PM for Jackson",
+            "entities": [
+                {
+                    "entity": "wit$datetime:reservationDateTime",
+                    "start": 40,
+                    "end": 58,
+                    "body": "next Friday at 2PM",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$contact:customerName",
+                    "start": 63,
+                    "end": 70,
+                    "body": "Jackson",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$number:numberOfGuests",
+                    "start": 34,
+                    "end": 39,
+                    "body": "seven",
+                    "entities": []
+                }
+            ],
+            "traits": [],
+            "intent": "reservation"
+        },
+        {
+            "text": "Hello my name is Mohammed. Please book a table for next week on Saturday for three guests",
+            "entities": [
+                {
+                    "entity": "wit$contact:customerName",
+                    "start": 17,
+                    "end": 26,
+                    "body": "Mohammed.",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$datetime:reservationDateTime",
+                    "start": 51,
+                    "end": 72,
+                    "body": "next week on Saturday",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$number:numberOfGuests",
+                    "start": 77,
+                    "end": 82,
+                    "body": "three",
+                    "entities": []
+                }
+            ],
+            "traits": [],
+            "intent": "reservation"
+        },
+        {
+            "text": "Hi, my name is Tommy. I'd like to book a table for four people today at 1PM",
+            "entities": [
+                {
+                    "entity": "wit$contact:customerName",
+                    "start": 15,
+                    "end": 20,
+                    "body": "Tommy",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$number:numberOfGuests",
+                    "start": 51,
+                    "end": 55,
+                    "body": "four",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$datetime:reservationDateTime",
+                    "start": 63,
+                    "end": 75,
+                    "body": "today at 1PM",
+                    "entities": []
+                }
+            ],
+            "traits": [],
+            "intent": "reservation"
+        },
+        {
+            "text": "My name is Gus please reserve a table tomorrow at 1:30PM for 3",
+            "entities": [
+                {
+                    "entity": "wit$contact:customerName",
+                    "start": 11,
+                    "end": 14,
+                    "body": "Gus",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$datetime:reservationDateTime",
+                    "start": 38,
+                    "end": 56,
+                    "body": "tomorrow at 1:30PM",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$number:numberOfGuests",
+                    "start": 61,
+                    "end": 62,
+                    "body": "3",
+                    "entities": []
+                }
+            ],
+            "traits": [],
+            "intent": "reservation"
+        },
+        {
+            "text": "This is Amy. I want to make a reservation for two persons tomorrow at 7PM",
+            "entities": [
+                {
+                    "entity": "wit$contact:customerName",
+                    "start": 8,
+                    "end": 12,
+                    "body": "Amy.",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$number:numberOfGuests",
+                    "start": 46,
+                    "end": 49,
+                    "body": "two",
+                    "entities": []
+                },
+                {
+                    "entity": "wit$datetime:reservationDateTime",
+                    "start": 58,
+                    "end": 73,
+                    "body": "tomorrow at 7PM",
+                    "entities": []
+                }
+            ],
+            "traits": [],
+            "intent": "reservation"
+        }
+    ]
+}

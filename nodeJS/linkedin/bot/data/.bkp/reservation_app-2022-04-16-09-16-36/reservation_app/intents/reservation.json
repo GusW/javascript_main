@@ -1,0 +1,8 @@
+{
+    "name": "reservation",
+    "entities": [
+        "wit$contact:customerName",
+        "wit$datetime:reservationDateTime",
+        "wit$number:numberOfGuests"
+    ]
+}

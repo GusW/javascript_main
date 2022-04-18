@@ -1,0 +1,7 @@
+{
+    "version": 20200513,
+    "zip-command": "zip reservation_app.zip reservation_app\/app.json reservation_app\/entities\/*.json reservation_app\/intents\/*.json reservation_app\/traits\/*.json reservation_app\/utterances\/*.json",
+    "name": "reservation_app",
+    "lang": "en",
+    "timezone": "CET"
+}

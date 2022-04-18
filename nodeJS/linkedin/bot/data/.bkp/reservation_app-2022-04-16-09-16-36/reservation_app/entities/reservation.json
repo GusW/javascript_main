@@ -1,0 +1,11 @@
+{
+    "name": "reservation",
+    "roles": [
+        "reservation"
+    ],
+    "lookups": [
+        "free-text",
+        "keywords"
+    ],
+    "keywords": []
+}
