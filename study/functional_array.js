@@ -82,3 +82,15 @@ console.log(
     0
   )
 )
+
+// add in a specific index position
+const newItem = { key1: 999, key2: 999, key3: 999 }
+exampleArray.splice(3, 0, newItem)
+console.log(exampleArray)
+
+// remove from a specific index position
+exampleArray.splice(3, 1) // remove from index 3 -> return item removed
+console.log(exampleArray)
+
+// create alphabet array
+console.log([...Array(26)].map((_, i) => String.fromCharCode(i + 97)))
