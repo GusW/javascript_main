@@ -427,7 +427,85 @@ var Person = {
 }
 
 var foo = Object.create(Person)
-console.log(foo)
+foo.init('foo', 'bar')
+// OR:
+var foo = Object.create(Person, {
+  firstName: { value: 'foo' },
+  lastName: { value: 'bar' },
+})
+
+// Using a Factory
+const PersonFactory = (firstName, lastName) => {
+  const person = Object.create(Person)
+  person.firstName = firstName
+  person.lastName = lastName
+  return person
+}
+```
+
+![Proto Inheritance](./images/proto_inheritance.png)
+
+```javascript
+const Person = {
+  fullName() {
+    return [this.firstName, this.lastName].join(' ')
+  },
+}
+
+const Professional = Object.create(Person, {
+  professionalName: {
+    value: function () {
+      return [this.honorific, this.firstName, this.lastName].join(' ')
+    },
+  },
+})
+
+const asim = Object.create(Professional)
+```
+
+### Extends
+
+```javascript
+class Person {
+  #firstName
+  #lastName
+  constructor(firstName, lastName) {
+    this.#firstName = firstName
+    this.#lastName = lastName
+  }
+
+  get firstName() {
+    return this.#firstName
+  }
+
+  get lastName() {
+    return this.#lastName
+  }
+
+  set firstName(newName) {
+    this.#firstName = newName
+  }
+
+  set lastName(newName) {
+    this.#lastName = newName
+  }
+
+  fullName = () => [this.firstName, this.lastName].join(' ')
+}
+
+class Student extends Person {
+  #course
+  constructor(firstName, lastName, course) {
+    super(firstName, lastName)
+    this.#course = course
+  }
+
+  get course() {
+    return this.#course
+  }
+
+  fullName = () => [this.course, this.firstName, this.lastName].join(' ')
+}
 ```
 
 ## Asynchronous Programming
@@ -548,9 +626,8 @@ Promise.all(promises).then((vals) => console.log(vals))
 const doAsyncTask = () => Promise.resolve('done')
 doAsyncTask().then((val) => console.log(val))
 console.log('here')
-
-// here
-// done
+// output: here
+// output: done
 
 // via async/await
 const doAsyncTask = () => Promise.resolve('done')
@@ -560,3 +637,56 @@ const foo = async () => {
 }
 foo()
 ```
+
+## Networking
+
+### CORS (Cross Origin Resource Sharing)
+
+- Security feature
+
+![CORS](./images/cors_1.png)
+![CORS](./images/cors_2.png)
+![CORS](./images/cors_3.png)
+
+- Preflight - handshake
+
+![Preflight](./images/preflight.png)
+
+- Test: <test-cors.org>
+
+### JSONP
+
+- Only works with `GET` requests
+- Wrapping JSON into a JS function allow consumption (get) from another domain
+- Adding script in the `html` file
+  ![JSONP](./images/jsonp_1.png)
+  ![JSONP](./images/jsonp_2.png)
+
+## Events
+
+### Event Bubbling x Event Capturing
+
+![Capturing vs Bubbling](./images/capturing_bubbling.png)
+
+- Events listeners on UI
+- Capturing: top-down
+- Bubling: bottom-up
+- Default: bubbling
+
+  ```javascript
+    ...addEventListener("click",
+      function (event) {
+        console.log(event)
+      }
+      true) // if true then CAPTURING
+  ```
+
+### stopPropagation() x preventDefault()
+
+![Stop Propagation](./images/stop_propagation.png)
+
+- propagation (capturing or bubbling) is not async
+  - next listener will be called only when previous listener is done executing
+  - `event.stopPropagation`
+- preventDefault does not stop propagation
+  - prevents the default behavior that the event would have in a component
