@@ -189,3 +189,18 @@ const event = {
   },
 }
 ```
+
+## Asynchronous Node.js
+
+![Sync](./images/async01.png)
+![Sync](./images/async02.png)
+![Sync](./images/async03.png)
+![Sync](./images/async04.png)
+![Sync](./images/async05.png)
+![Sync](./images/async06.png)
+![Sync](./images/async07.png)
+![Sync](./images/async08.png)
+![Sync](./images/async09.png)
+![Sync](./images/async10.png)
+![Sync](./images/async11.png)
+![Sync](./images/async12.png)
